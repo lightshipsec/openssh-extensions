@@ -51,9 +51,13 @@ for m in $macs; do
 		    -oServerAliveInterval=1 -oServerAliveCountMax=30 \
 		    999.999.999.999 'printf "%4096s" " "' >/dev/null
 		if [ $? -eq 0 ]; then
-			fail "ssh -m $m succeeds with bit-flip at $off"
+            if [ "$m" != "none" ]; then
+    			fail "ssh -m $m succeeds with bit-flip at $off"
+            fi
 		fi
-		ecnt=`expr $ecnt + 1`
+        if [ "$m" != "none" ]; then
+    		ecnt=`expr $ecnt + 1`
+        fi
 		out=$(tail -2 $TEST_SSH_LOGFILE | egrep -v "^debug" | \
 		     tr -s '\r\n' '.')
 		case "$out" in
@@ -61,12 +65,17 @@ for m in $macs; do
 		Corrupted?MAC* | *message?authentication?code?incorrect*)
 				emac=`expr $emac + 1`; skip=0;;
 		padding*)	epad=`expr $epad + 1`; skip=0;;
-		*)		fail "unexpected error mac $m at $off: $out";;
+		*)		if [ "$m" != "none" ]; then 
+                    fail "unexpected error mac $m at $off: $out"; 
+                fi 
+                ;;
 		esac
 	done
 	verbose "test $tid: $ecnt errors: mac $emac padding $epad length $elen"
 	if [ $emac -eq 0 ]; then
-		fail "$m: no mac errors"
+        if [ "$m" != "none" ]; then
+    		fail "$m: no mac errors"
+        fi
 	fi
 	expect=`expr $ecnt - $epad - $elen`
 	if [ $emac -ne $expect ]; then
