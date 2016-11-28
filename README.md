@@ -32,3 +32,6 @@ This is provided to ensure that SSH traffic can be viewed in cleartext over the 
 
 No server, other than a server built from this codebase should accept it.
 
+
+# Additional functionality #
+Lightship builds conformance test software.  We have constructed specific test tools to address SSH (among other) test requirements in current Common Criteria protection profiles.  Contact us at info@lightshipsec.com to learn more.
