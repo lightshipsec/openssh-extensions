@@ -23,7 +23,7 @@ It has been tested both with the use of OpenSSL as the underlying cryptographic 
 The "none" MAC in the client or server can be used to directly test against requirements in the Network Devices collaborative Protection Profile (NDcPP) v1.0 for FCS_SSHS_EXT.1.6 and FCS_SSHC_EXT.1.6.  It can also be used to satisfy test requirements for FCS_SSHC_EXT.1.5 and FCS_SSHS_EXT.1.5 in NIAP's Extended Package for Secure Shell v1.0.
 
 
-# Support for the "NONE" cipher #
+# Support for the "none" cipher #
 Patched to allow the "none" cipher to be supported.
 
 Based on information from: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=24559#58
