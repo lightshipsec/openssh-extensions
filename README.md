@@ -1,18 +1,13 @@
 Common Criteria conformance test extensions by Lightship Security, Inc.
-This source code is provided as-is under the OpenSSH license.
+This source code is provided as-is under the OpenSSH license and is based on the OpenSSH v7.1p2 release.
 
-Lightship extensions are disabled by default and need to configured with
---enable-lightship.  Enabling these extensions will result in the following
-functionality being added to the stock ciphers and MACs.
+Lightship extensions are disabled by default and need to configured with --enable-lightship.  Enabling these extensions will result in the following functionality being added to the stock ciphers and MACs.
 
-Do not use this build of OpenSSH for anything other than test purposes.  Lightship does not 
-accept any liability for use of this software.  This software should be considered 
-experimental.
+Do not use this build of OpenSSH for anything other than test purposes.  Lightship does not accept any liability for use of this software.  This software should be considered experimental.
 
 
 # Support for the "none" MAC #
-Support was added for the "none" mac:
-	`ssh -m none -c aes128-cbc user@host`
+Support was added for the "none" mac: `ssh -m none -c aes128-cbc user@host`
 
 This will work when the underlying cipher requires a hashing algorithm to perform the MAC.  If a cipher is chosen that has built-in integrity support (eg. chacha20-poly1305@openssh.com, or similar), then this option as no effect.
 
@@ -24,7 +19,7 @@ The "none" MAC in the client or server can be used to directly test against requ
 
 
 # Support for the "none" cipher #
-Patched to allow the "none" cipher to be supported.
+Patched to allow the "none" cipher to be supported: `ssh -m hmac-sha1 -c none user@host`
 
 Based on information from: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=24559#58
 
