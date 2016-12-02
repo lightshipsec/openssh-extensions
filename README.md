@@ -9,9 +9,7 @@ Do not use this build of OpenSSH for anything other than test purposes.  Lightsh
 # Support for the "none" MAC #
 Support was added for the "none" mac: `ssh -m none -c aes128-cbc user@host`
 
-This will work when the underlying cipher requires a hashing algorithm to perform the MAC.  If a cipher is chosen that has built-in integrity support (eg. chacha20-poly1305@openssh.com, or similar), then this option as no effect.
-
-No server, other than a server built from this codebase should accept it.
+This will work when the underlying cipher requires a hashing algorithm to perform the MAC.  If a cipher is chosen that has built-in integrity support (eg. chacha20-poly1305@openssh.com, or similar), then this option has no effect.
 
 It has been tested both with the use of OpenSSL as the underlying cryptographic implementation as well as when OpenSSL is disabled using the --without-openssl configuration option.
 
@@ -21,11 +19,9 @@ The "none" MAC in the client or server can be used to directly test against requ
 # Support for the "none" cipher #
 Patched to allow the "none" cipher to be supported: `ssh -m hmac-sha1 -c none user@host`
 
-Based on information from: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=24559#58
+Based heavily on information from: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=24559#58
 
 This is provided to ensure that SSH traffic can be viewed in cleartext over the wire to verify functionality, including, but not limited to, the use of the "none" MAC.
-
-No server, other than a server built from this codebase should accept it.
 
 
 # Additional functionality #
